@@ -136,5 +136,6 @@ function changeDescription(src){
 
 }
 
-
-alert("try to click an element from a cell and insert it in to the wand.");
+window.onload = function() {
+    alert("try to click an element from a cell and insert it in to the wand.");
+}
