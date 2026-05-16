@@ -135,3 +135,6 @@ function changeDescription(src){
     description.innerText = info[name].descript + "\n\nDamage: " + info[name].damage;
 
 }
+
+
+alert("try to click an element from a cell and insert it in to the wand.");
