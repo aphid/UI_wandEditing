@@ -1,0 +1,42 @@
+{
+    "bi_bullet":{
+        "name" : "bi-bullet",
+        "descript": "does weaker damages, but it will split in to two after hit an enemy",
+        "damage" : -3
+    },
+    "bulletStrength":{
+        "name" : "bullet strength",
+        "descript": "your bullet being stronger",
+        "damage" : 10
+    }
+    , "eletric":{
+        "name" : "eletric",
+        "descript": "add eletric damage, paralyze the enemy",
+        "damage" : 5
+
+    }
+    , "fireWand":{
+        "name" : "fire wand",
+        "descript": "will ignite enemies on its path",
+        "damage" : 3
+
+    }
+    , "freezing":{
+        "name" : "freezing",
+        "descript": "freezes the enemy",
+        "damage" : 5
+
+    }
+    , "poisonExp":{
+        "name" : "poison explode",
+        "descript": "if this bullet kill an enemy, it will cause an poison explosion; will hurt yourself",
+        "damage" : 15
+
+    }
+    , "speedUp":{
+        "name" : "speed up",
+        "descript": "your bullet flying faster now.",
+        "damage" : 0
+
+    }
+}
