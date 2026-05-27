@@ -7,21 +7,21 @@ var displayName = document.querySelector("h2 span");
 var description = document.querySelector(".ele_info span");
 var damageDispaly = document.querySelector("#damageDisplay");
 
-for(let i = 0; i < inventory_element.length; i++){
+for (let i = 0; i < inventory_element.length; i++) {
 
-    inventory_element[i].onclick = function(){
+    inventory_element[i].onclick = function () {
         tableOnClick(inventory_element[i], i);
     };
 }
 
-function tableOnClick(block, order){
+function tableOnClick(block, order) {
     let blockImg = block.querySelector("img");
-    if(blockImg){
+    if (blockImg) {
         changeDescription(blockImg.src);
     }
 
 
-    if(!onClickedCell){
+    if (!onClickedCell) {
         block.style.borderColor = "rgb(237, 73, 40)";
         block.style.backgroundColor = "rgb(250, 156, 78)";
         onClickedCell = block;
@@ -32,14 +32,14 @@ function tableOnClick(block, order){
 
     let ifReplaceHappen = false;
     // swap
-    if(preImg && blockImg){
+    if (preImg && blockImg) {
         let temp = preImg.src;
         preImg.src = blockImg.src;
         blockImg.src = temp;
         ifReplaceHappen = true;
     }
     // only first has image
-    else if(preImg){
+    else if (preImg) {
         block.appendChild(preImg);
         ifReplaceHappen = true;
     }
@@ -48,21 +48,21 @@ function tableOnClick(block, order){
     //reset
     onClickedCell.style.borderColor = "rgb(235, 229, 185)";
     onClickedCell.style.backgroundColor = "rgb(122, 90, 64)";
-    if(ifReplaceHappen){
+    if (ifReplaceHappen) {
         onClickedCell = null;
     }
-    else{
+    else {
         block.style.borderColor = "rgb(237, 73, 40)";
         block.style.backgroundColor = "rgb(250, 156, 78)";
         onClickedCell = block;
     }
 }
 
-for(let i = 0; i < imageArr.length; i++){
+for (let i = 0; i < imageArr.length; i++) {
     createImg(imageArr[i], inventory_element[i + 4]);
 }
 
-function createImg(imgSrc, theCell){
+function createImg(imgSrc, theCell) {
 
     // create img element
     let img = document.createElement("img");
@@ -82,7 +82,9 @@ function createImg(imgSrc, theCell){
 }
 
 
-let info = {
+let info;
+/*
+info = {
     "bi_bullet":{
         "name" : "bi-bullet",
         "descript": "does weaker damages, but it will split in to two after hit an enemy",
@@ -123,10 +125,10 @@ let info = {
         "damage" : 0
 
     }
-};
+};*/
 
 
-function changeDescription(src){
+function changeDescription(src) {
 
     let name = src.split("/").pop().replace(".png", "");
 
@@ -136,6 +138,13 @@ function changeDescription(src){
 
 }
 
-window.onload = function() {
+
+
+//loads data into info, once loaded it shows alert and raises opacity. 
+document.addEventListener("DOMContentLoaded", async function () {
+    let data = await fetch("info.json");
+    info = await data.json();
     alert("try to click an element from a cell and insert it in to the wand.");
-}
+    ui.style.opacity = 1;
+
+});
