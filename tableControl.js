@@ -20,7 +20,6 @@ function tableOnClick(block, order) {
         changeDescription(blockImg.src);
     }
 
-
     if (!onClickedCell) {
         block.style.borderColor = "rgb(237, 73, 40)";
         block.style.backgroundColor = "rgb(250, 156, 78)";
@@ -32,6 +31,7 @@ function tableOnClick(block, order) {
 
     let ifReplaceHappen = false;
     // swap
+
     if (preImg && blockImg) {
         let temp = preImg.src;
         preImg.src = blockImg.src;
@@ -56,10 +56,19 @@ function tableOnClick(block, order) {
         block.style.backgroundColor = "rgb(250, 156, 78)";
         onClickedCell = block;
     }
+    updateDamage();
 }
 
-for (let i = 0; i < imageArr.length; i++) {
-    createImg(imageArr[i], inventory_element[i + 4]);
+function updateDamage() {
+    let dmg = 0;
+    for (let i of document.querySelector("#weapon_insert_selection").querySelectorAll("img")) {
+        console.log(i.dataset.damage);
+        dmg += parseInt(i.dataset.damage);
+    }
+    damageDisplay.textContent = dmg;
+    //you could change the class of damageDisplay based on the number to have color indicate higher or lower power
+    return dmg;
+
 }
 
 function createImg(imgSrc, theCell) {
@@ -74,7 +83,7 @@ function createImg(imgSrc, theCell) {
     img.style.width = "100%";
     img.style.height = "100%";
     img.style.objectFit = "contain";
-
+    img.dataset.damage = info[imgSrc.replace(".png", "")].damage;
     // add to body
     theCell.appendChild(img);
 
@@ -146,5 +155,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     info = await data.json();
     alert("try to click an element from a cell and insert it in to the wand.");
     ui.style.opacity = 1;
+
+    for (let i = 0; i < imageArr.length; i++) {
+        createImg(imageArr[i], inventory_element[i + 4]);
+    }
+    updateDamage();
 
 });
